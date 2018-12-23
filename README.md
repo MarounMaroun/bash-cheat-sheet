@@ -4,11 +4,11 @@
     * [What is Bash?](#what-is-bash)
     * [Where Bash scripts run?](#where-bash-scripts-run)
     * [The Shebang (#!)](#the-shebang)
-1. Variables
-    * Setting / Reading variables
-    * Special variables
+1. [Variables](#variables)
+    * [Setting / Reading variables](#setting--reading-variables)
+    * [Special variables](#special-variables)
     * Command line arguments
-    * Quotes
+    * Local variables
     * Exporting variables
     * Types of variables
     * Arrays variables
@@ -70,4 +70,74 @@ If we now run  `./test.sh`, the `echo $PATH` command will be passed to the `/bin
 /bin/bash test.sh
 ```
 
+## Variables
 
+Variables are used to hold information. Theur purpose is to label and store data in memory, which will be used throughout the program you write.
+
+### Setting / Reading variables
+
+Bash variables don't have to be declared. You can have a varialbe by simply assigning a value to its reference.
+
+```bash
+#!/bin/bash
+str="hello world!"
+echo $str
+```
+
+The second line above creates a variable called `str`, and assigns the string "hello world" to it. Then the *value* of the `str` variable is retrieved by adding `$` to the variable's name. NOTE: If you ommit the `$` and use `echo str`, the "str" string will be echoed.
+
+> "A quote"
+
+When we want to assign a single word to variable, we don't need any quotes. The following command works just fine:
+
+```bash
+name=maroun
+```
+
+However, if we want to store more complex values,we need to use quotes.
+
+There are two types of quotes: `'` (single quote), and `"` (double quotes).
+
+*Single quotes* treats every character **literally**, whereas *double quotes* allows **substitution**. This snippet dempnstrates the difference:
+
+```bash
+var=world
+echo "hello $var"
+echo 'hello $var'
+```
+
+The output would be:
+
+```
+hello world
+hello $var
+```
+
+
+#### Command substitution
+
+Allows us to take an output of a command, and assign it to a variable. This happens when a command is enclosed as `$(command)` or `` `command` ``.
+
+Bash executes the command in a subshell environment, and replaces the command substitution with the standard output of the command.
+
+the `$(command)` form is preferred over the backticks one, as it's the newer POSIX form. If this reason is not enough, you should compare the following two, and decide which one is more readable:
+
+```bash
+echo $(echo $(echo hello))
+echo `echo \`echo hello\``
+```
+
+### Special variables
+
+Bash has some built in variables. The following list sums up these variables:
+
+| Variable | Description   |
+| :---     | :---          |
+| `$0`     | The name of the file that's running the current script |
+| `$n`     | Arguments with which the script was invoked (`$1` is the first argument, `$2` is the second and so on)  |
+| `$$`     | The process ID of the current shell  |
+| `$!`     | The process ID of the last background command  |
+| `$@`     | All arguments passed to the script  |
+| `$#`     | Number of arguments passed to the script  |
+| `$?`     | The exit status of the most recently process  |
+| `$_`     | The last argument of the last command  |
