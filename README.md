@@ -4,39 +4,40 @@
     * [What is Bash?](#what-is-bash)
     * [Where Bash scripts run?](#where-bash-scripts-run)
     * [The Shebang (#!)](#the-shebang)
-1. [Variables](#variables)
+2. [Variables](#variables)
     * [Setting / Reading variables](#setting--reading-variables)
     * [Special variables](#special-variables)
     * [Command line arguments](#command-line-arguments)
-    * Local variables
     * Exporting variables
     * Types of variables
     * Arrays variables
-2. Input
+3. Functions
+    * Scope of variables
+    * Return codes
+4. Input
     * Reading input from STDIN
     * Asking user for input
-3. Arithmetic
+5. Arithmetic
     * `declare`
     * `expr`
     * `let`
-4.  Conditional statements
+6.  Conditional statements
     * `if` statements
     * `test`
     * Boolean operations
     * `case` statements
-5. Repetitive tasks
+7. Repetitive tasks
     * `for` loops
     * `while` loops
     * `until` loops
-6. Functions
-7. Signals
+8. Signals
 
 
 ## Introduction
 
 ### What is bash?
 
-Short and fast definition: "Bash" is **B**ourne **A**gain **SH**ell. It's a command line interpreter that executes commands from the standard input (STDIN) and is capable to run commands from a file (called a shell script).
+"Bash" is **B**ourne **A**gain **SH**ell. It's a command language interpreter for the GNU operating system that executes commands from the standard input (STDIN) and is capable to run commands from a file (called a shell script).
 
 ### Where Bash scripts run?
 
