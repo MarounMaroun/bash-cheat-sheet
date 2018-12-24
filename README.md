@@ -7,7 +7,7 @@
 1. [Variables](#variables)
     * [Setting / Reading variables](#setting--reading-variables)
     * [Special variables](#special-variables)
-    * Command line arguments
+    * [Command line arguments](#command-line-arguments)
     * Local variables
     * Exporting variables
     * Types of variables
@@ -141,3 +141,23 @@ Bash has some built in variables. The following list sums up these variables:
 | `$#`     | Number of arguments passed to the script  |
 | `$?`     | The exit status of the most recently process  |
 | `$_`     | The last argument of the last command  |
+
+### Command line arguments
+
+You are already familiar with command line arguments, and you've probably used it many times before. For example, when we use the command:
+
+```bash
+ls -l /etc
+```
+
+we're actually providing two arguments for the `ls` program. The first one (`$1`) is the `-l` flag, and the second one (`$2`) is the file destination, `/etc`.
+
+As we saw in the table above, `$n` holds the arguments with which the script was invoked. For example, if we write the script `example.sh`:
+
+```bash
+First argument is $1, second one is $2
+```
+
+Now when we run `./example.sh Hello World!`, we'll get the output
+
+> First argument is Hello, second one is World!  
