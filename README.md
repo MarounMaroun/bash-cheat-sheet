@@ -9,7 +9,7 @@
     * [Special variables](#special-variables)
     * [Command line arguments](#command-line-arguments)
     * [Exporting variables](#exporting-variables)
-    * Types of variables
+    * [Types of variables](#types-of-variables)
     * Arrays variables
 3. Functions
     * Scope of variables
@@ -210,3 +210,60 @@ var=world
 ```
 
 If we run `./a.sh`, we'll get "hello" printed, and not "world".
+
+### Types of variables
+
+So far, we didn't care much about the variables' type. The variables we saw could contain any value we assign to them. For example:
+
+```bash
+var=hello
+var=4
+var=$(date)
+var=2.3
+```
+
+In some cases, you might want to make a constant variable, or assign only integers to it.
+
+Introducing the `declare` built-in keyword!
+
+`declare` allows us to limit the value assigned to a variable. Some of its option:
+
+| Option   | Description       |
+| :---     | :---              |
+| -a       | Array variable    |
+| -i       | Integer variable  |
+| -r       | Read only variable |
+| -u       | All characters converted to uper-case |
+| -l       | All characters converted to lower-case |
+
+The code below will provide a good explanation of the usage:
+
+```bash
+#!/bin/bash
+declare -i i=5
+echo $i
+i=str
+echo $i
+declare -l s=HELLO
+echo $s
+declare -p s
+declare -ai arr=(9 2 3 4 5)
+arr[0]=1
+echo ${arr[*]}
+# declare -r c=const
+# r=hello 
+```
+
+Run `./test.sh`:
+
+```
+5
+0
+hello
+declare -l s="hello"
+1 2 3 4 5
+```
+
+If we uncomment the last two lines, we'll get an error saying that we're trying to assign to a readonly variable:
+
+>./test.sh: line 10: r: readonly variable
