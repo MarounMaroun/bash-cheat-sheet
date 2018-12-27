@@ -8,7 +8,7 @@
     * [Setting / Reading variables](#setting--reading-variables)
     * [Special variables](#special-variables)
     * [Command line arguments](#command-line-arguments)
-    * Exporting variables
+    * [Exporting variables](#exporting-variables)
     * Types of variables
     * Arrays variables
 3. Functions
@@ -161,4 +161,52 @@ First argument is $1, second one is $2
 
 Now when we run `./example.sh Hello World!`, we'll get the output
 
-> First argument is Hello, second one is World!  
+> First argument is Hello, second one is World!
+
+### Exporting variables
+
+Since scripts run in their own process, variables are also limited to the process in which they run.
+
+In some cases, you would want to break your script to multiple scripts, and run one from another. Consider this example:
+
+```bash
+# a.sh
+var=hello
+./b.sh
+```
+
+```bash
+# b.sh
+echo $var
+```
+We'll not get anything printed to the console. That's because `var` variable is unknown in the subprocess that `b.sh` runs inside.
+
+To overcome this problem, we use the `export` keyword:
+
+```bash
+# a.sh
+var=hello
+export var
+./b.sh
+```
+
+Now, `var` is "exported" and is available in the second script.
+
+**Important note!**
+
+The `var` in the second script is just a copy of the variable, changing it inside `b.sh` has no impact on the original varialbe in `a.sh`! The snippet below should demonstrate the issue:
+
+```bash
+# a.sh
+var=hello
+export var
+./b.sh
+echo $var
+```
+
+```bash
+# b.sh
+var=world
+```
+
+If we run `./a.sh`, we'll get "hello" printed, and not "world".
