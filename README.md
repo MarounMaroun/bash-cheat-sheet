@@ -10,7 +10,7 @@
     * [Command line arguments](#command-line-arguments)
     * [Exporting variables](#exporting-variables)
     * [Types of variables](#types-of-variables)
-    * Arrays variables
+    * [Arrays variables](#arrays-variables)
 3. Functions
     * Scope of variables
     * Return codes
@@ -267,3 +267,33 @@ declare -l s="hello"
 If we uncomment the last two lines, we'll get an error saying that we're trying to assign to a readonly variable:
 
 >./test.sh: line 10: r: readonly variable
+
+### Arrays variables
+
+Array is simply a variable holding multiple values, of the same type or different types.
+
+Bash provides one dimentional indexed and associative array variables. There is no max limit on the size of an array.
+
+To explicitly declare an array, we use:
+
+```bash
+declare -a array_var
+```
+
+It's also possible to create an array using compound assignments in the following format:
+
+```bash
+array_var=(value1 value2 value3 ... valueN)
+```
+
+#### Dereferencing the variables
+
+We use curly braces in order to access an element. The following example should provide a good explanation:
+
+```bash
+arr=(1 2 3 4 5 6)
+echo ${arr[*]}  # prints 1 2 3 4 5 6
+echo $arr[*]    # prints 1[*] ($arr prints 1, then the chars [*] are printed)
+echo ${arr[4]}  # prints 5 (arrays are zero-based)
+echo ${#arr[@]} # prints 6
+```
