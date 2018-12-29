@@ -11,7 +11,7 @@
     * [Exporting variables](#exporting-variables)
     * [Types of variables](#types-of-variables)
     * [Arrays variables](#arrays-variables)
-3. Functions
+3. [Functions](#functions)
     * Scope of variables
     * Return codes
 4. Input
@@ -297,3 +297,18 @@ echo $arr[*]    # prints 1[*] ($arr prints 1, then the chars [*] are printed)
 echo ${arr[4]}  # prints 5 (arrays are zero-based)
 echo ${#arr[@]} # prints 6
 ```
+
+### Functions
+
+Bash functions are used to group commands, using a single name for the group.
+When executing a function, the command are executed one by one, in the order they appear.
+
+The syntax for creating a function:
+
+```bash
+[function] name () { commands; }
+```
+
+Note that the `function` keyword is optional, and the curly braces must be separated from the function's body by a space of blanks.
+
+Fcuntions are executed within the *current* shell context, not in a new subprocess.
