@@ -12,6 +12,7 @@
     * [Types of variables](#types-of-variables)
     * [Arrays variables](#arrays-variables)
 3. [Functions](#functions)
+    * [Arguments](#arguments)
     * Scope of variables
     * Return codes
 4. Input
@@ -312,3 +313,25 @@ The syntax for creating a function:
 Note that the `function` keyword is optional, and the curly braces must be separated from the function's body by a space of blanks.
 
 Fcuntions are executed within the *current* shell context, not in a new subprocess.
+
+#### Arguments
+
+Within the function, the arguments are stored in `$1`, `$2`, ..., `$N` variables. For example:
+
+```bash
+greet() {
+    echo You passed $# arguments!
+    echo Hello $*
+    echo Hello $1 $2!
+}
+
+greet Maroun Bassam
+```
+
+This will print:
+
+```
+You passed 2 arguments
+Hello Maroun Bassam
+Hello Maroun Bassam!
+```
