@@ -13,7 +13,7 @@
     * [Arrays variables](#arrays-variables)
 3. [Functions](#functions)
     * [Arguments](#arguments)
-    * Scope of variables
+    * [Scope of variables](#scope-of-variables)
     * Return codes
 4. Input
     * Reading input from STDIN
@@ -335,3 +335,20 @@ You passed 2 arguments
 Hello Maroun Bassam
 Hello Maroun Bassam!
 ```
+
+#### Scope of variables
+
+A Bash variable can be declared as `local`, which means that it is visible only within the block in which it appears. For example:
+
+```bash
+function test {
+    local loc_var=100
+    echo $local_var
+}
+test
+echo $local_var
+```
+
+Only 100 will be echoed - the `echo` outside the function doesn't know what `local_var` is, and a blank value will be printed.
+
+If we remove the `local` keyword, and run the script again, we'll get 100 printed twice.
