@@ -14,7 +14,7 @@
 3. [Functions](#functions)
     * [Arguments](#arguments)
     * [Scope of variables](#scope-of-variables)
-    * Return codes
+    * [Return codes](#return-codes)
 4. Input
     * Reading input from STDIN
     * Asking user for input
@@ -352,3 +352,52 @@ echo $local_var
 Only 100 will be echoed - the `echo` outside the function doesn't know what `local_var` is, and a blank value will be printed.
 
 If we remove the `local` keyword, and run the script again, we'll get 100 printed twice.
+
+#### Return codes
+
+A script in Linux can be terminated using the `exit` command. There are [255 different error codes](http://tldp.org/LDP/abs/html/exitcodes.html), while 0 means success.
+
+For example, the `grep` command returns 0 if a match was found:
+
+```bash
+echo hello | grep -q h
+echo $?
+# prints 0
+echo hello | grep -q z
+echo $?
+# prints 1
+```
+
+If you don't return a value explicitly in a script, the exist status of the last command that the script executed is returned. For example, the following script returns the exit status of `some_command`:
+
+```bash
+#!/bin/bash
+some_command
+```
+
+while the following script returns 0:
+
+```bash
+#!/bin/bash
+function test {
+    cat non_existing_file
+}
+test
+echo "I'm visible"
+exit 0
+```
+
+We can use `set -e` if we want the script to exit if a command fails:
+
+```bash
+#!/bin/bash
+set -e
+function test {
+    cat non_existing_file
+}
+test
+echo "I'm invisible"
+exit 0
+```
+
+The script above will not reach the last line and will return 1.
