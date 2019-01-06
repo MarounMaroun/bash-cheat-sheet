@@ -46,7 +46,7 @@ When we run a script, the Bash process starts a new process in which the script 
 
 For example, if we have three terminals, and each runs a command, there will be *three* processes running the command.
 
-### The Shebang
+### The Shebang 🙌
 
 When we execute a command, the OS needs to know how to execute it. The Shebang is a path to the Bash interpreter. For example:
 
