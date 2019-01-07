@@ -15,9 +15,9 @@
     * [Arguments](#arguments)
     * [Scope of variables](#scope-of-variables)
     * [Return codes](#return-codes)
-4. Input
+4. [Input](#input)
+    * [Asking user for input](#asking-user-for-input)
     * Reading input from STDIN
-    * Asking user for input
 5. Arithmetic
     * `declare`
     * `expr`
@@ -401,3 +401,39 @@ exit 0
 ```
 
 The script above will not reach the last line and will return 1.
+
+### Input
+
+We already saw how to provide arguments to a Bash script. In this section, we will show how to ask the user to provide arguments to your script.
+
+#### Asking user for input
+
+The command `read` asks the user for input. It takes the input and stores it to a variable.
+
+```bash
+echo "Please insert your name: "
+read name
+echo "Hello, $name!"
+```
+
+You can also use the `-p` flag:
+
+```bash
+read -p "Please insert your name: " name
+echo "Hello, $name!"
+```
+
+The `-s` flag will hide the user's input. It's used when a sensetive data is requested:
+
+```bash
+read -ps "Please insert your password: " pwd
+```
+
+It's also possible to ask for multiple inputs:
+
+```bash
+echo "What are your favorite colors?"
+read c1 c2 c3
+```
+
+This will tell `read` that more than one input is expected. It'll split the input passed by the user by space and assign to the variables accordingly.
