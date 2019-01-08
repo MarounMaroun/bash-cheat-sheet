@@ -299,7 +299,7 @@ echo ${arr[4]}  # prints 5 (arrays are zero-based)
 echo ${#arr[@]} # prints 6
 ```
 
-### Functions
+## Functions
 
 Bash functions are used to group commands, using a single name for the group.
 When executing a function, the command are executed one by one, in the order they appear.
@@ -314,7 +314,7 @@ Note that the `function` keyword is optional, and the curly braces must be separ
 
 Fcuntions are executed within the *current* shell context, not in a new subprocess.
 
-#### Arguments
+### Arguments
 
 Within the function, the arguments are stored in `$1`, `$2`, ..., `$N` variables. For example:
 
@@ -336,7 +336,7 @@ Hello Maroun Bassam
 Hello Maroun Bassam!
 ```
 
-#### Scope of variables
+### Scope of variables
 
 A Bash variable can be declared as `local`, which means that it is visible only within the block in which it appears. For example:
 
@@ -353,7 +353,7 @@ Only 100 will be echoed - the `echo` outside the function doesn't know what `loc
 
 If we remove the `local` keyword, and run the script again, we'll get 100 printed twice.
 
-#### Return codes
+### Return codes
 
 A script in Linux can be terminated using the `exit` command. There are [255 different error codes](http://tldp.org/LDP/abs/html/exitcodes.html), while 0 means success.
 
@@ -402,11 +402,11 @@ exit 0
 
 The script above will not reach the last line and will return 1.
 
-### Input
+## Input
 
 We already saw how to provide arguments to a Bash script. In this section, we will show how to ask the user to provide arguments to your script.
 
-#### Asking user for input
+### Asking user for input
 
 The command `read` asks the user for input. It takes the input and stores it to a variable.
 
@@ -438,7 +438,7 @@ read c1 c2 c3
 
 This will tell `read` that more than one input is expected. It'll split the input passed by the user by space and assign to the variables accordingly.
 
-#### Reading input from STDIN
+### Reading input from STDIN
 
 Reading input from the STDIN can be useful when you want to process data piped to your own bash script.
 
