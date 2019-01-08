@@ -17,7 +17,7 @@
     * [Return codes](#return-codes)
 4. [Input](#input)
     * [Asking user for input](#asking-user-for-input)
-    * Reading input from STDIN
+    * [Reading input from STDIN](#reading-input-from-stdin)
 5. Arithmetic
     * `declare`
     * `expr`
@@ -437,3 +437,41 @@ read c1 c2 c3
 ```
 
 This will tell `read` that more than one input is expected. It'll split the input passed by the user by space and assign to the variables accordingly.
+
+#### Reading input from STDIN
+
+Reading input from the STDIN can be useful when you want to process data piped to your own bash script.
+
+A pipe redirects the *output* of the *left hand command* to the *input* of the *right hand command*. Simple as that. For example, in the following command:
+
+```bash
+ps aux | grep badprocess | grep -v grep | awk '{print $2}' | xargs kill
+```
+
+we look for `badprocess`, print its ID and kill it.
+
+Now we want to write our own script that's able to process data piped to it.
+
+The Linux creed: "*Everything is a file*", this includes the standard input and output. In Linux, each process gets its own set of files, which gets linked when we invoke piping.
+
+Each process has:
+
+  * STDIN  - `/proc/self/fd/0` OR `/dev/stdin`
+  * STDOUT - `/proc/self/fd/1` OR `/dev/stdout`
+  * STDERR - `/proc/self/fd/2` OR `/dev/stderr`
+
+Having this information, we should be now able to understand how to make a script that's able to process data piped to it:
+
+```bash
+#!/bin/bash
+cat /dev/stdin | grep -oP "\d+" || echo "No digits found"
+```
+
+In this script, we get the data from the standard input, and we look for digits in it:
+
+```bash
+echo Yes | ./find_digits.sh
+No digits found
+echo Hello13 | ./find_digits.sh
+13
+```
