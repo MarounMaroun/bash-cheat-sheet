@@ -18,10 +18,9 @@
 4. [Input](#input)
     * [Asking user for input](#asking-user-for-input)
     * [Reading input from STDIN](#reading-input-from-stdin)
-5. Arithmetic
-    * `declare`
+5. [Arithmetic](#arithmetic)
+    * [`let`](#let)
     * `expr`
-    * `let`
 6.  Conditional statements
     * `if` statements
     * `test`
@@ -474,4 +473,33 @@ echo Yes | ./find_digits.sh
 No digits found
 echo Hello13 | ./find_digits.sh
 13
+```
+
+## Arithmetic
+
+The Shell allows evaluation of arithmetic expressions. The format for arithmetic expansion is:
+
+```bash
+$(( expression ))
+```
+
+For example:
+
+```
+a=$(( 5 + 7 ))  # 12
+b=$((5+7))      # 12
+c=$(( $a * 6 )) # 72
+d=$(( ++c ))    # 73
+```
+
+### `let`
+
+`let` performs arithmetic on Shell variables.
+
+The `let` command is similar to `((` expression we saw before, except that `let` is a builtin command, and `((` is a *compound* command. Example:
+
+```bash
+let x=7+10    # 17
+let "y=7+10"  # 17
+let "z=$x+$y" # 34
 ```
