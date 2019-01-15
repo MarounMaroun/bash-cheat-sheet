@@ -20,7 +20,7 @@
     * [Reading input from STDIN](#reading-input-from-stdin)
 5. [Arithmetic](#arithmetic)
     * [`let`](#let)
-    * `expr`
+    * [`expr`](#expr)
 6.  Conditional statements
     * `if` statements
     * `test`
@@ -503,3 +503,15 @@ let x=7+10    # 17
 let "y=7+10"  # 17
 let "z=$x+$y" # 34
 ```
+
+### `expr`
+
+`expr` is a program that's able to evaluate math expressions.
+
+```bash
+x=10
+y=`expr $x + 20`
+echo $y
+```
+
+Note that if we ommit the spaces around the "+" sign, the string "10+20" will be printed.
