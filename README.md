@@ -21,8 +21,8 @@
 5. [Arithmetic](#arithmetic)
     * [`let`](#let)
     * [`expr`](#expr)
-6.  Conditional statements
-    * `if` statements
+6.  [Conditional statements](#conditional-statements)
+    * [`if` statements](#if-statements)
     * `test`
     * Boolean operations
     * `case` statements
@@ -515,3 +515,9 @@ echo $y
 ```
 
 Note that if we ommit the spaces around the "+" sign, the string "10+20" will be printed.
+
+## Conditional statements
+
+Sometimes we need to take different actions depending on some result. The `if` statement allows us to specify *conditions*.
+
+### `if` statements
