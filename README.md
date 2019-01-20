@@ -521,3 +521,58 @@ Note that if we ommit the spaces around the "+" sign, the string "10+20" will be
 Sometimes we need to take different actions depending on some result. The `if` statement allows us to specify *conditions*.
 
 ### `if` statements
+
+The basic syntax of an `if` statement is:
+
+```bash
+if <condition>; then
+    <commands>
+elif <condition>; then
+    <commands>
+else
+    <commands>
+fi
+```
+
+For example, checking of a file is readable:
+
+```bash
+if [ -r file ]; then
+    echo "readable!"
+else
+    echo "not readable!"
+fi
+```
+
+Note: The spaces between the brackets and the actual check are must. The following won't work:
+
+```bash
+if [$a -lt $b]; then ...
+```
+The expression `if [ -r file ]; then` can be written as follows:
+
+```bash
+if test -r file; then
+    echo "readable!"
+else
+    echo "not readable!"
+```
+
+`test` is a built-in command that allows various tests and sets its exit code to 0 or 1 depending on the test result (success or failure). Its structure is straightforward:
+
+```bash
+test <expression>
+```
+
+The following line prints "yes" if the condition is true, "no" will be printed otherwise:
+
+```bash
+test 100 -ge 50 && echo "yes" || echo "no"
+```
+
+Inverting a condition is done by adding a "!" in front of the condition. For example:
+
+```bash
+if [ ! -r file ]; then ...
+```
+
