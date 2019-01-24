@@ -25,8 +25,8 @@
     * [`if` statements](#if-statements)
     * [Boolean operations](#boolean-operations)
     * [`case` statements](#case-statements)
-7. Repetitive tasks
-    * `for` loops
+7. [Repetitive tasks](#repetitive-tasks)
+    * [`for` loops](#for-loops)
     * `while` loops
     * `until` loops
 8. Signals
@@ -630,3 +630,88 @@ case $x in
     ;;
 esac
 ```
+
+## Repetitive tasks
+
+When we want to execute commands and keep re-running them until some condition is met, we need to understand how to make repetitive tasks in Bash.
+
+We'll talk about the `while`, `for` and `until` loops.
+
+### `for` loops
+
+The general syntax of the `for` loops is:
+
+```bash
+for var in <list>;
+do
+    <commands>
+done
+```
+
+The `var` variable will take each value of the given list, will execute the commands and then move to the next element, until it's done.
+
+For example:
+
+```bash
+numbers="0 1 2 3 4 5 6 7 8 9"
+for n in $numbers; do
+    echo $n
+done
+```
+
+We could also use ranges:
+
+```bash
+for i in {0..9}; do
+    echo $i
+done
+```
+
+The `break` keyword exists the `for` loop. For example, the following script:
+
+```bash
+for i in {0..6}; do
+    if [[ $i -eq "5" ]]; then
+        break
+    fi
+    echo "$i"
+done
+echo "hello"
+```
+
+prints 
+
+```
+0
+1
+2
+3
+4
+hello
+```
+
+The `continue` keywords stops the current iteration and goes back to the loop. For example:
+
+```bash
+for i in {0..6}; do
+    if [[ $i -eq "5" ]]; then
+        continue
+    fi
+    echo "$i"
+done
+echo "hello"
+```
+
+will print:
+
+```
+0
+1
+2
+3
+4
+6
+hello
+```
+
+note that "5" was not printed.
