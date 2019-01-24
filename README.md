@@ -24,7 +24,7 @@
 6.  [Conditional statements](#conditional-statements)
     * [`if` statements](#if-statements)
     * [Boolean operations](#boolean-operations)
-    * `case` statements
+    * [`case` statements](#case-statements)
 7. Repetitive tasks
     * `for` loops
     * `while` loops
@@ -593,4 +593,40 @@ It's also possible to use this syntax:
 if [[ ( "$a" -eq "0" && "$b" -ne "1" ) || "$c" -eq "0" ]]; then
     ...
 fi
+```
+
+### `case` statements
+
+I assume we're all familiar with "case" statements from different languages (some languages call it "switch"). It's useful when we want to take different paths based on some variable matching of patterns. The general syntax of the "case" statement is:
+
+```bash
+case expression in
+    <pattern1>)
+        statements
+        ;;
+    <pattern2>)
+        statements
+        ;;
+    ...
+esac
+```
+
+The `case` statement first expands the expression and tries to match it against the given patterns.
+
+When a match is found, all the statements until the `;;` semicolons are executed.
+
+The exist status of the `case` command is the exist status of the last executed command in the statements. 0 will be returned if there are no matches at all.
+
+```bash
+case $x in
+  [1-3]*)
+    echo "x has only [1-3] digits"
+    ;;
+  n|p)
+    echo "x is n or p"
+    ;;
+  *)
+    echo "I'm not sure..."
+    ;;
+esac
 ```
