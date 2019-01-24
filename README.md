@@ -23,8 +23,7 @@
     * [`expr`](#expr)
 6.  [Conditional statements](#conditional-statements)
     * [`if` statements](#if-statements)
-    * `test`
-    * Boolean operations
+    * [Boolean operations](#boolean-operations)
     * `case` statements
 7. Repetitive tasks
     * `for` loops
@@ -576,3 +575,22 @@ Inverting a condition is done by adding a "!" in front of the condition. For exa
 if [ ! -r file ]; then ...
 ```
 
+### Boolean operations
+
+If we want to check multiple conditions, we can use the boolean operators. For example:
+
+```bash
+if [ "$a" == "$b" ] && [ -e "$var" ]; then
+    ...
+fi
+```
+
+We can use the `||` operator for "or".
+
+It's also possible to use this syntax:
+
+```bash
+if [[ ( "$a" -eq "0" && "$b" -ne "1" ) || "$c" -eq "0" ]]; then
+    ...
+fi
+```
