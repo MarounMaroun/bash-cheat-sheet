@@ -27,7 +27,7 @@
     * [`case` statements](#case-statements)
 7. [Repetitive tasks](#repetitive-tasks)
     * [`for` loops](#for-loops)
-    * `while` loops
+    * [`while` loops](#while-loops)
     * `until` loops
 8. Signals
 
@@ -715,3 +715,13 @@ hello
 ```
 
 note that "5" was not printed.
+
+### `while` loops
+
+This construct also allows repetitive execution of a list of commands, as long as the command in the `while` condition has a 0 exit status. The syntax is:
+
+```bash
+while <test>; do
+    <commands>
+done
+```
