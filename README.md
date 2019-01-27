@@ -29,7 +29,7 @@
     * [`for` loops](#for-loops)
     * [`while` loops](#while-loops)
     * [`until` loops](#until-loops)
-8. Signals
+8. [Signals](#signals)
 
 
 ## Introduction
@@ -760,3 +760,22 @@ done
 ```
 
 The commands (`echo $i`) will continue executing *until* the condition (`$i -gt 10`) is true.
+
+## Signals
+
+When a signal is sent, the OS interrupts the normal flow of the target process to deliver the signal. The execution can be interrupted during a non-atomic instruction.
+
+Some key combinations at the terminal of a running process can be used to send certain signals:
+
+* Ctrl-C sends INT signal (causes the process to terminate)
+* Ctrl-Z sends TSTP signal (causes the process to suspend its execution)
+* Ctrl-\ sends QUIT signal (causes the process to terminate and dump core)
+
+From within a script, we can use the `kill` built-in function that accepts the signal name and the process ID.
+
+Common `kill` signal is the SIGKILL (9), which sends the "kill signal". For example:
+
+```bash
+ps -ef | grep some_process | exec kill -9
+```
+The above command looks for the ID of `some_process` and sends it a kill signal.
