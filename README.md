@@ -28,7 +28,7 @@
 7. [Repetitive tasks](#repetitive-tasks)
     * [`for` loops](#for-loops)
     * [`while` loops](#while-loops)
-    * `until` loops
+    * [`until` loops](#until-loops)
 8. Signals
 
 
@@ -725,3 +725,38 @@ while <test>; do
     <commands>
 done
 ```
+
+For exmample:
+
+```bash
+i=0
+while [[ $i -lt 10 ]]; do
+    echo $i
+done
+```
+
+As in the `for` loop, we can also use `break` and `continue` statements here as well.
+
+### `until` loops
+
+The `while` loop runs the loop *while* the condition is true. `until` runs the loop *until* the condition is true (while the condition is *false*).
+
+Its syntax is:
+
+```bash
+until <test>; do
+    <commands>
+done
+```
+
+For example:
+
+```bash
+i=0
+until [[ $i -gt 10 ]]; do
+    echo $i
+    ((i++))
+done
+```
+
+The commands (`echo $i`) will continue executing *until* the condition (`$i -gt 10`) is true.
