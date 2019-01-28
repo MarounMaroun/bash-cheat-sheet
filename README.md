@@ -3,7 +3,7 @@
 1. [Introduction](#introduction)
     * [What is Bash?](#what-is-bash)
     * [Where Bash scripts run?](#where-bash-scripts-run)
-    * [The Shebang (#!)](#the-shebang)
+    * [The Shebang](#the-shebang)
 2. [Variables](#variables)
     * [Setting / Reading variables](#setting--reading-variables)
     * [Special variables](#special-variables)
@@ -44,7 +44,19 @@ When we run a script, the Bash process starts a new process in which the script 
 
 For example, if we have three terminals, and each runs a command, there will be *three* processes running the command.
 
-### The Shebang 🙌
+Let's see what happens when a user types some command in the Shell, say `ps -ef`.
+
+The Shell first checks for aliases, and if found, it simply replaces the with the alias. Otherwise, it checks if the command is built-in.
+
+Next, the Shell looks for a binary program called "ps" in a list of directories (the `PATH` variable). Once the program is found (you can check its location by running `whereis ps`), a call to the system's `fork()` is made, which creates a child process.
+
+Now, having the "new" process, the OS does another system call that:
+
+* stops the *parent* process
+* loads the program (`ps`)
+* starts it with the arguments that were passed
+
+### The Shebang
 
 When we execute a command, the OS needs to know how to execute it. The Shebang is a path to the Bash interpreter. For example:
 
