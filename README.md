@@ -587,6 +587,18 @@ Inverting a condition is done by adding a "!" in front of the condition. For exa
 if [ ! -r file ]; then ...
 ```
 
+You probably know that you can use double square brackets in Bash as well. For eaxmple:
+
+```bash
+if [[ ! -r file ]]; then ...
+```
+
+But there are several differences:
+
+* `[` is a Bash *builtin* in Bash, and it's similar to `test`. The command itself is simply `[`, and the closing bracket `]` is actually an argument!
+
+* `[[` and `]]` are Bash keywords, not programs
+
 ### Boolean operations
 
 If we want to check multiple conditions, we can use the boolean operators. For example:
