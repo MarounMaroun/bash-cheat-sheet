@@ -82,6 +82,8 @@ If we now run  `./test.sh`, the `echo $PATH` command will be passed to the `/bin
 /bin/bash test.sh
 ```
 
+A good explanation can be found [here](https://unix.stackexchange.com/questions/354509/what-is-the-function-of-bash-shebang).
+
 ## Variables
 
 Variables are used to hold information. Theur purpose is to label and store data in memory, which will be used throughout the program you write.
